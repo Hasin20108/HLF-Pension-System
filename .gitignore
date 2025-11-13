@@ -44,12 +44,9 @@ coverage/
 *.old
 
 # Wallet or credentials (Hyperledger Fabric specific)
-backend/wallet/
-backend/connection-org1.json
-backend/enrollAdmin.js
-backend/registerUser.js
+pension-app/backend/wallet/
 
 # Local working / notes
-workingProcuder.txt
+pension-app/workingProcuder.txt
 notes.txt
 pension-app/chaincode/vendor/
