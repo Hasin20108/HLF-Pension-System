@@ -7,20 +7,20 @@ The system automates pension processing, prevents fraud, and provides **auto-aud
 
 ---
 
-## 🌟 Features
+## Features
 
-* 🔒 **Immutable Ledger:** Every pension transaction is securely recorded on the blockchain.
-* 🏛️ **Multi-Organization Network:** Includes Government, Bank, and Auditor organizations.
-* ⚙️ **Smart Contract (Chaincode):** Automates pension approval and disbursement processes.
-* 📑 **Auto-Audit Trails:** Each transaction is logged for transparency and verification.
-* 👤 **Identity-Based Access Control:** Managed using Fabric CA.
-* 📈 **Dashboard for Pensioners & Admins:** View, approve, and track pension disbursements.
-* 🧠 **Error Recovery & Transaction Validation:** Built-in endorsement and ordering mechanisms.
-* 🔗 **Fabric SDK Integration:** Backend built using Node.js SDK for network communication.
+* **Immutable Ledger:** Every pension transaction is securely recorded on the blockchain.
+* **Multi-Organization Network:** Includes Government, Bank, and Auditor organizations.
+* **Smart Contract (Chaincode):** Automates pension approval and disbursement processes.
+* **Auto-Audit Trails:** Each transaction is logged for transparency and verification.
+* **Identity-Based Access Control:** Managed using Fabric CA.
+* **Dashboard for Pensioners & Admins:** View, approve, and track pension disbursements.
+* **Error Recovery & Transaction Validation:** Built-in endorsement and ordering mechanisms.
+* **Fabric SDK Integration:** Backend built using Node.js SDK for network communication.
 
 ---
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 | **Component**              | **Technology Used**                   |
 | -------------------------- | ------------------------------------- |
@@ -34,110 +34,230 @@ The system automates pension processing, prevents fraud, and provides **auto-aud
 | Authentication             | Fabric MSP & Wallet System            |
 
 ---
-## System Architecture
+## Architecture Diagrams
 
-<!-- 
-## 📁 Project Structure
-
-```
-HLF-Pension-System
-  └── blockchain-network
-      │   ├── bin/
-      │   ├── builders/ 
-      │   ├── ci/
-      │   ├── config/
-      │   ├── test-network/
-      pension-app
-      │   ├── backend/
-      │   ├── chaincode/
-      │   ├── frontend/
-      │   ├── package-lock.json
-      README.md
-      .gitignore
-```
-
----
-
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/pension-system.git
-cd pension-system
-```
-
-### 2️⃣ Start the Fabric Network
-
-```bash
-cd blockchain
-./network.sh up createChannel -ca
-./network.sh deployCC -ccn pension -ccp ../chaincode/ -ccl node
-```
-
-### 3️⃣ Enroll Admin and Register Users
-
-```bash
-cd backend
-node enrollAdmin.js
-node registerUser.js
-```
-
-### 4️⃣ Run the Backend API
-
-```bash
-node server.js
-```
-
-### 5️⃣ Run the Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Your system should now be live at:
-📍 **[http://localhost:3000](http://localhost:3000)**
-
----
-
-## 🧠 System Flow
-
-1. Pensioners register and submit claims.
-2. Government officials verify and approve requests.
-3. Bank organization disburses pension funds.
-4. All actions are recorded immutably in the ledger.
-5. Auditor organization can view and verify all transactions.
-
----
-
-## 📸 Screenshots (Optional)
-
+![System Architecture](Assets/production.png)
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/example1.png" width="400" />
-  <img src="https://github.com/user-attachments/assets/example2.png" width="400" />
+  <img src="Assets/TransactionFlowDiagram.png" width="300" />
+  <img src="Assets/SequenceDiagram.png" width="300" />
 </p>
 
+## Screenshots
+<p align="center">
+  <img src="Assets/frontpage.png" width="300" />
+  <img src="Assets/Dashboard.png" width="300" />
+  <img src="Assets/contribution.png" width="300" />
+  <img src="Assets/history.png" width="300" />
+  <img src="Assets/audit.png" width="300" />
+  
+</p>
+
+
+## Project Structure
+![System Architecture](Assets/structure.png)
 ---
 
-## 🧱 Architecture Diagram
+## System Setup Guide
 
-<img width="800" alt="architecture" src="https://github.com/user-attachments/assets/example-architecture.png" />
+This guide provides a clean sequence of commands to initialize a fresh Linux environment, remove old versions of tools, and install updated versions of essential development utilities such as Docker, Node.js, Go, jq, and curl.
 
 ---
 
-## 🔒 Security Highlights
+### 1. System Update (Always Start Clean)
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y ca-certificates gnupg lsb-release
+```
+
+---
+
+### 2. Install `curl`
+
+### Uninstall curl
+
+```bash
+sudo apt remove --purge -y curl
+sudo apt autoremove -y
+```
+
+### Install curl
+
+```bash
+sudo apt install -y curl
+curl --version   # Expect version: 8.5.0
+```
+
+---
+
+### 3. Docker Installation
+
+#### Uninstall Docker (if previously installed)
+
+```bash
+sudo apt remove -y docker docker.io containerd containerd.io
+sudo apt autoremove -y
+```
+
+#### Install Docker
+
+```bash
+curl -fsSL https://get.docker.com | sudo bash
+docker --version
+docker compose version
+```
+
+#### Grant Docker permissions
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+#### Test Docker
+
+```bash
+docker ps
+docker run hello-world
+```
+
+---
+
+### 4. Install `jq`
+
+#### Uninstall jq
+
+```bash
+sudo apt remove --purge -y jq
+sudo apt autoremove -y
+sudo rm -f /usr/local/bin/jq
+```
+
+#### Install jq
+
+```bash
+sudo apt install -y jq
+jq --version
+```
+
+---
+
+### 5. Install Go
+
+#### Uninstall Go
+
+```bash
+which go
+sudo rm -rf /usr/local/go
+sudo rm -rf ~/go
+sudo apt remove --purge -y golang-go
+sudo apt autoremove -y
+```
+
+#### Install Go
+
+```bash
+sudo apt install -y golang-go
+go version
+```
+
+---
+
+### 6. Install Node.js
+
+#### Uninstall Node.js
+
+```bash
+sudo apt remove --purge -y nodejs npm
+sudo apt autoremove -y
+
+nvm uninstall node
+rm -rf ~/.nvm
+
+# If installed manually
+sudo rm -f /usr/local/bin/node
+sudo rm -f /usr/local/bin/npm
+sudo rm -f /usr/local/bin/npx
+```
+
+#### Install Node.js (LTS)
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+---
+
+### 7. Optional Cleanup
+
+```bash
+sudo apt autoremove -y
+sudo apt clean
+sudo apt autoclean
+```
+
+---
+
+### Your system is now clean and fully configured!
+
+---
+## Running Steps
+
+```bash
+
+git clone https://github.com/Hasin20108/HLF-Pension-System.git
+cd blockchain-network
+export PATH=$PATH:$PWD/bin
+peer version
+
+
+step 1:
+In directory
+HLF-Pension-System/blockchain-network/test-network
+
+./network.sh down
+./network.sh up createChannel -ca
+./network.sh deployCC -ccn pension -ccp ../../pension-app/chaincode -ccl go
+
+step 2:
+In directory
+HLF-Pension-System/pension-app/backend
+
+# Delete Wallet folder (It's important)
+
+# skip next three line if you are not running this project for the first time. 
+npm install 
+npm install express
+npm install cors
+
+node enrollAdmin.js 
+node registerUser.js 
+node server.js 
+
+
+step 3:
+In directory
+HLF-Pension-System/pension-app/frontend
+
+# skip next one line if you are not running this project for the first time. 
+npm install
+
+npm run dev
+
+```
+---
+
+## Security Highlights
 
 * MSP-based access control for each organization
 * Encrypted identity and key storage in wallet
 * Channel-based data privacy
 * Audit-ready immutable records
-* Private data collections (optional)
 
 ---
 
-## 🧩 Future Enhancements
+## Future Enhancements
 
 * Integration with national pension databases
 * Support for biometric identity verification
@@ -147,17 +267,8 @@ Your system should now be live at:
 
 ---
 
-## 🧪 Testing
 
-Run basic Fabric tests and chaincode unit tests:
-
-```bash
-npm test
-```
-
----
-
-## 🚀 Deployment
+## Deployment
 
 For production or government use cases, deploy on **Kubernetes** with persistent storage:
 
@@ -165,33 +276,28 @@ For production or government use cases, deploy on **Kubernetes** with persistent
 kubectl apply -f k8s/
 ```
 
-You can also integrate **Fabric Operations Console** for network monitoring.
-
 ---
 
-## 🤝 Contributors
+## Contributors
 
 | Name               | Role                     | Contribution                           |
 | ------------------ | ------------------------ | -------------------------------------- |
-| Md. Bakhtiar Hasin | Lead Developer           | Network setup, backend SDK integration |
-| [Add more]         | Smart contract developer | Chaincode logic & endorsement policy   |
-| [Add more]         | UI Developer             | Frontend dashboard (Next.js)           |
+| Md. Bakhtiar Hasin | Blockchain Developer           | Network setup, chaincode logic development |
+| Md. Abu Bokkor Siddik        | Web Developer | Backend, Frontend and Fabric SDK   |
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the [Apache 2.0 License](LICENSE).
 
 ---
 
-## 📞 Contact
+## Contact
 
 **Md. Bakhtiar Hasin**
-🎓 CSE Student | Blockchain Developer
-📧 [[your.email@example.com](mailto:your.email@example.com)]
-🌐 [your-portfolio-link]
+
+CSE Student | Blockchain Developer
+[[hasin.ru.cse@gmail.com](hasin.ru.cse@gmail.com)]
 
 ---
-
-Would you like me to **add a system flow diagram (SVG or PNG)** and a **sample architecture image** (with Orderer, Acme, and Bank orgs) that fits this README perfectly? I can generate one for you visually. -->
