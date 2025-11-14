@@ -36,8 +36,8 @@ The system automates pension processing, prevents fraud, and provides **auto-aud
 ---
 ## Architecture Diagrams
 
-![System Architecture](Assets/production.png)
 <p align="center">
+  <img src="Assets/production.png" width="300" />
   <img src="Assets/TransactionFlowDiagram.png" width="300" />
   <img src="Assets/SequenceDiagram.png" width="300" />
 </p>
