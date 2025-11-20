@@ -217,8 +217,8 @@ In directory
 HLF-Pension-System/blockchain-network/test-network
 
 ./network.sh down
-./network.sh up createChannel -ca
-./network.sh deployCC -ccn pension -ccp ../../pension-app/chaincode -ccl go
+./network.sh up createChannel -ca -c pensionchannel
+./network.sh deployCCAAS -c pensionchannel -ccn pension -ccp ../../pension-app/chaincode -ccl go
 
 step 2:
 In directory
