@@ -1,0 +1,17 @@
+install in ubuntu 
+
+sudo apt-get update
+sudo apt-get install curl
+
+# download kubectl from this link
+https://kubernetes.io/docs/tasks/tools/
+
+# to check my pc is arm64 or 86x64 in ubuntu
+uname -m
+
+
+sudo curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+kubectl version --client
+kubectl version --client --output=yaml

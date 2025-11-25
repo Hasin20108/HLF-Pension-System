@@ -1,0 +1,173 @@
+﻿K8s Cluster Setup - Day 2
+
+
+Docker Setup =======>>>>>>>>>>>>>>>>>>>>
+
+
+Step 1 - Install Docker
+
+
+* Install Docker: 
+sudo apt install -y docker.io
+  
+
+* sudo systemctl start docker
+* sudo systemctl enable docker
+  
+
+* sudo systemctl status docker
+  
+
+* su ubuntu
+  
+
+* sudo usermod -aG docker $USER : Add your user to the docker group
+* newgrp docker : Start a new shell session for the group changes to take effect
+* docker version : Test whether you can run Docker commands without sudo
+
+
+  
+
+
+
+
+
+MiniKube Setup =======>>>>>>>>>>>>>>>>>>>>
+
+
+Step 2 - Minikube on Ubuntu - At Least 2 CPUs & 2GB RAM required
+
+
+* sudo apt update && sudo apt upgrade -y
+          
+* Ensure that curl installed:
+sudo apt install -y curl wget apt-transport-https
+          
+* Use the following command to download the Minikube binary:
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+  
+
+* Move the downloaded binary to your system's PATH:
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+  
+
+* Check if Minikube is installed correctly:
+minikube version
+  
+
+* Switch to Ubuntu user first:
+su ubuntu
+  
+
+* Start Minikube with the following command:
+minikube start
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MiniKube Commands =======>>>>>>>>>>>>>>>>>>>>
+
+
+Step 3 - Some sample minikube commands
+
+
+* minikube stop : Stop Minikube Cluster
+* minikube delete : Delete Minikube Cluster
+* minikube start --driver=docker : Start Minikube Cluster with specific driver
+* minikube kubectl -- get pods -A : Minikube kubectl commands to check pods
+* minikube kubectl get ns  : Minikube kubectl commands to check namespaces
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Install kubectl =======>>>>>>>>>>>>>>>>>>>>
+
+
+Step 4 - Steps to install kubectl
+
+
+* su ubuntu
+* Download kubectl binary:
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.2/2024-11-15/bin/linux/amd64/kubectl
+  
+
+* Download kubectl binary checksum:
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.2/2024-11-15/bin/linux/amd64/kubectl.sha256
+  
+
+* Verify checksum
+sha256sum -c kubectl.sha256
+  
+
+* chmod +x ./kubectl  : Grant executable permission to kubectl dir
+  
+
+* mkdir -p $HOME/bin 
+* cp ./kubectl $HOME/bin/kubectl : Copy kubectl to bin folder
+  
+
+* echo 'export PATH=$HOME/bin/:$PATH' >> ~/.bashrc : Add PATH update to .bashrc to persist across sessions
+* source ~/.bashrc : Reload bashrc file 
+  
+
+
+
+
+
+=======>>>>>>>>>>>>>>>>>>Enjoy kubectl<<<<<<<<<<<=============
+
+
+Step 5 - kubectl commands
+
+
+* Kubectl get pods
+* Kubectl get nodes
+* Kubectl get ns
+* kubectl config current-context

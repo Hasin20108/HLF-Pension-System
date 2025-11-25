@@ -1,0 +1,24 @@
+For uploading github
+
+2. proper readme file ready korte hobe. 1 bar atleast check kore dekha lagbe
+    architecture er picture diye dite hobe. 
+    ekta video tutorial o diye dite hobe. 
+    tutorial ta english e hote hobe
+
+
+
+project ta fix korte hobe.
+Fahim er sathe dekha korte jabo achor er namaj er por.
+sayeed er sathe dekha korte hobe magrib er namaj er por.
+
+
+untracking files 
+git rm --cached wallet/admin.id wallet/appUser.id
+
+untracking folders
+git rm -r --cached wallet/
+git rm -r --cached wallet/
+git rm -r --cached wallet/
+
+
+
